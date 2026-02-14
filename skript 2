@@ -1,0 +1,12 @@
+# Auto Broadcast by Matei
+options:
+    prefix: &8[&aInfo&8]&7
+
+on load:
+    set {broadcast.list::*} to "&eNu uita să votezi serverul!", "&bAlătură-te Discord-ului nostru!", "&aRespectă regulile serverului!"
+    broadcast "{@prefix} Sistemul de broadcast a pornit."
+
+every 5 minutes:
+    if size of {broadcast.list::*} is greater than 0:
+        set {_msg} to a random element out of {broadcast.list::*}
+        broadcast "{@prefix} %{_msg}%"
