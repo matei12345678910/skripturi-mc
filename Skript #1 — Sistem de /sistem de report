@@ -1,0 +1,16 @@
+# Report System by Matei
+options:
+    prefix: &8[&cReport&8]&7
+
+command /report <player> <text>:
+    permission: report.use
+    trigger:
+        if arg-1 is not online:
+            send "{@prefix} Jucătorul nu este online."
+            stop
+        set {_msg} to arg-2 joined with " "
+        broadcast "{@prefix} &e%player% a raportat pe &c%arg-1% &7pentru: &f%{_msg}%"
+        loop all players:
+            if loop-player has permission "report.see":
+                send "{@prefix} &cNou report! &7%player% &8→ &c%arg-1% &8: &f%{_msg}%" to loop-player
+        send "{@prefix} Report trimis cu succes!"
